@@ -52,4 +52,4 @@ Projeyi derlemekle uğraşmak istemiyorsanız, uygulamanın hazır derlenmiş **
 **Kapukaya TV Premium** yalnızca boş bir medya oynatıcısıdır. Kendi sunucularında herhangi bir medya içeriği, canlı yayın, film veya dizi barındırmaz ve kullanıcılara sunmaz. Kullanıcıların kendi yasal içeriklerini (M3U bağlantısı vb.) eklemesi gerekmektedir. Telif hakkıyla korunan materyallerin izinsiz yayınlanması veya izlenmesinden doğacak her türlü hukuki sorumluluk tamamen son kullanıcıya aittir. Geliştirici hiçbir sorumluluk kabul etmez.
 
 ---
-*Developed with ❤️ by [kapukaya.dev](https://github.com/kapukaya)*
+*Developed with ❤️ by [kapukaya.dev](https://kapukaya.dev)*
