@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/osdContainer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_osd_panel"
+    android:clickable="true"
+    android:focusable="false"
+    android:orientation="horizontal"
+    android:paddingStart="24dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="18dp">
+
+    <!-- Big Channel Logo -->
+    <ImageView
+        android:id="@+id/ivOsdLogo"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/bg_channel_card"
+        android:contentDescription="@string/all_channels"
+        android:padding="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_tv" />
+
+    <!-- Channel Details -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="20dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Live Status Indicator -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/accent_red"
+                android:fontFamily="sans-serif-bold"
+                android:paddingStart="8dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="2dp"
+                android:text="● CANLI"
+                android:textColor="@color/white"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/tvOsdCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/accent_blue"
+                android:textSize="13sp"
+                tools:text="Ulusal / Genel" />
+        </LinearLayout>
+
+        <!-- Big Channel Name -->
+        <TextView
+            android:id="@+id/tvOsdChannelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="sans-serif-bold"
+            android:maxLines="1"
+            android:textColor="@color/text_primary"
+            android:textSize="22sp"
+            tools:text="1. TRT 1 HD" />
+
+        <TextView
+            android:id="@+id/tvOsdEpgHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:text="Kumanda: Sol = Kanal Listesi | Numaralar = Zapping | Geri = Çıkış"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- OSD Action Buttons -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Add to Category Button -->
+        <ImageButton
+            android:id="@+id/btnOsdAddCategory"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_button_selector"
+            android:contentDescription="Kategoriye Ekle"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_folder_plus" />
+
+        <!-- Favorite Button -->
+        <ImageButton
+            android:id="@+id/btnOsdFavorite"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_button_selector"
+            android:contentDescription="@string/favorites"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_star_border" />
+    </LinearLayout>
+
+</LinearLayout>

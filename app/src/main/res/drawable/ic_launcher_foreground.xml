@@ -1,0 +1,18 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Glowing TV Screen -->
+    <path
+        android:fillColor="#38BDF8"
+        android:pathData="M84,30H24c-3.3,0 -6,2.7 -6,6v36c0,3.3 2.7,6 6,6h18l-3,6v2h30v-2l-3,-6h18c3.3,0 6,-2.7 6,-6V36c0,-3.3 -2.7,-6 -6,-6zm0,42H24V36h60v36z"/>
+    <!-- Play Triangle -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M48,44l16,10 -16,10z"/>
+    <!-- Live Antenna/Signal -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M42,22l8,8h8l8,-8h-4l-6,6 -6,-6z"/>
+</vector>

@@ -1,0 +1,139 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardChannel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/bg_channel_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="false"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Top Row with Logo and Action Buttons -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+
+        <!-- Channel Logo -->
+        <ImageView
+            android:id="@+id/ivChannelLogo"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/all_channels"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_tv" />
+
+        <!-- Right Side Action Buttons (Add Category & Favorite) -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnAddCategory"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_button_selector"
+                android:contentDescription="Kategoriye Ekle"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:padding="6dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_folder_plus"
+                app:tint="@color/icon_focus_inverse" />
+
+            <ImageButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_button_selector"
+                android:contentDescription="@string/favorites"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:padding="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_star_border"
+                app:tint="@color/icon_focus_inverse" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <!-- Channel Name -->
+    <TextView
+        android:id="@+id/tvChannelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        tools:text="1. TRT 1 HD" />
+
+    <!-- Channel Category / Group -->
+    <TextView
+        android:id="@+id/tvChannelCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="0.02"
+        android:maxLines="1"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        tools:text="Ulusal Kanallar" />
+
+    <!-- Reorder Controls (Visible in Favorites Tab) -->
+    <LinearLayout
+        android:id="@+id/reorderContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <Button
+            android:id="@+id/btnMoveUp"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:background="@drawable/bg_button_selector"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:fontFamily="sans-serif-bold"
+            android:minWidth="34dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="▲ YUKARI"
+            android:textColor="@color/text_focus_inverse_primary"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btnMoveDown"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/bg_button_selector"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:fontFamily="sans-serif-bold"
+            android:minWidth="34dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:text="▼ AŞAĞI"
+            android:textColor="@color/text_focus_inverse_primary"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+</LinearLayout>

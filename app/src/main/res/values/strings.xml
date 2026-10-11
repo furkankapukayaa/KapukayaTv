@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">KapukayaTv</string>
+    <string name="search_hint">Kanal veya kategori ara…</string>
+    <string name="settings">Ayarlar</string>
+    <string name="categories">Kategoriler</string>
+    <string name="all_channels">Tüm Kanallar</string>
+    <string name="favorites">Favoriler</string>
+    <string name="boot_startup">Cihaz Açılışında Başlat</string>
+    <string name="boot_startup_desc">Android açıldığında KapukayaTv otomatik başlasın</string>
+    <string name="manage_categories">Kategori Ekle / Yönet</string>
+    <string name="add_category">Yeni Kategori Ekle</string>
+    <string name="edit_category">Kategoriyi Düzenle</string>
+    <string name="delete_category">Kategoriyi Sil</string>
+    <string name="category_name_hint">Kategori Adı</string>
+    <string name="m3u_url_title">M3U Playlist URL</string>
+    <string name="save">Kaydet</string>
+    <string name="cancel">İptal</string>
+    <string name="stream_error">Yayın şu an aktif değil veya ulaşılamıyor</string>
+    <string name="no_internet">İnternet bağlantısı kesildi</string>
+    <string name="retrying">Tekrar deneniyor…</string>
+    <string name="channel_added_fav">Kanal favorilere eklendi</string>
+    <string name="channel_removed_fav">Kanal favorilerden çıkarıldı</string>
+    <string name="added_to_category">Kategoriye eklendi</string>
+    <string name="select_category">Kategori Seç</string>
+    <string name="quick_zapping">Hızlı Kanal Menüsü</string>
+    <string name="move_up_arrow">▲</string>
+    <string name="move_down_arrow">▼</string>
+    <string name="delete_x">X</string>
+</resources>
