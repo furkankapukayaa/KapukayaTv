@@ -37,6 +37,8 @@ class PreferenceManager(context: Context) {
         private const val KEY_LAST_HEALTH_CHECK = "key_last_health_check"
         private const val KEY_TV_CHANNEL_ID = "key_tv_home_channel_id"
         private const val KEY_TV_PROGRAM_IDS = "key_tv_home_program_ids_json"
+        private const val KEY_SHOW_LAUNCH_CHOICE = "key_show_launch_choice"
+        private const val KEY_BATTERY_TIP_DISMISSED = "key_battery_tip_dismissed"
         private const val MAX_RECENTS = 20
         const val DEFAULT_M3U_URL = "https://iptv-org.github.io/iptv/countries/tr.m3u"
     }
@@ -51,6 +53,19 @@ class PreferenceManager(context: Context) {
 
     fun setResumeLastChannel(enabled: Boolean) {
         prefs.edit().putBoolean(KEY_RESUME_LAST_CHANNEL, enabled).apply()
+    }
+
+    /** Açılışta "Televizyon İzle / Ekran Yansıt" seçim ekranı gösterilsin mi? */
+    fun isLaunchChoiceEnabled(): Boolean = prefs.getBoolean(KEY_SHOW_LAUNCH_CHOICE, true)
+
+    fun setLaunchChoiceEnabled(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_SHOW_LAUNCH_CHOICE, enabled).apply()
+    }
+
+    fun isBatteryTipDismissed(): Boolean = prefs.getBoolean(KEY_BATTERY_TIP_DISMISSED, false)
+
+    fun setBatteryTipDismissed(dismissed: Boolean) {
+        prefs.edit().putBoolean(KEY_BATTERY_TIP_DISMISSED, dismissed).apply()
     }
 
     fun isMergeDuplicatesEnabled(): Boolean = prefs.getBoolean(KEY_MERGE_DUPLICATES, true)

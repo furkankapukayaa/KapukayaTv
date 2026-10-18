@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- Android TV ana ekranına "Favoriler" satırı eklemek için -->
     <uses-permission android:name="com.android.providers.tv.permission.WRITE_EPG_DATA" />
+    <!-- Ekran yansıtma (telefon tarafı) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <!-- Android TV features: touchscreen is NOT required -->
     <uses-feature
@@ -87,6 +91,33 @@
             android:exported="false"
             android:label="@string/remote_setup_title"
             android:theme="@style/Theme.KapukayaTv" />
+
+        <!-- Açılış seçimi: Televizyon İzle / Ekran Yansıt -->
+        <activity
+            android:name=".LaunchChoiceActivity"
+            android:exported="false"
+            android:theme="@style/Theme.KapukayaTv" />
+
+        <!-- Ekran yansıtma menüsü, alıcı (TV) ve gönderici (telefon) -->
+        <activity
+            android:name=".MirrorMenuActivity"
+            android:exported="false"
+            android:theme="@style/Theme.KapukayaTv" />
+        <activity
+            android:name=".MirrorReceiverActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
+            android:exported="false"
+            android:theme="@style/Theme.KapukayaTv" />
+        <activity
+            android:name=".MirrorSenderActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.KapukayaTv" />
+
+        <service
+            android:name=".mirror.MirrorSenderService"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
 
         <!-- Boot Completed Receiver -->
         <receiver

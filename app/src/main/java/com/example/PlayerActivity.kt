@@ -55,6 +55,7 @@ import com.example.data.repository.ChannelRepository
 import com.example.databinding.ActivityPlayerBinding
 import com.example.ui.adapter.TabType
 import com.example.ui.adapter.ZappingChannelAdapter
+import com.example.util.DeviceUtil
 import com.example.util.PreferenceManager
 import com.example.util.TextUtil
 import kotlinx.coroutines.launch
@@ -148,6 +149,11 @@ class PlayerActivity : AppCompatActivity() {
 
         channelRepository = ChannelRepository.getInstance(this)
         prefManager = PreferenceManager(this)
+
+        // Telefonda oynatıcı yatay açılır (TV zaten yatay; etkilenmez)
+        if (!DeviceUtil.isTv(this)) {
+            requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+        }
 
         // Büyük listeler Intent ile taşınmaz; sıra repository'de tutulur
         channelList = channelRepository.playbackQueue.ifEmpty { channelRepository.getAllChannels() }
@@ -839,9 +845,53 @@ class PlayerActivity : AppCompatActivity() {
 
         binding.osdView.btnOsdOptions.setOnClickListener { showOptionsPanel() }
 
-        binding.playerView.setOnClickListener {
-            if (binding.osdView.root.visibility == View.VISIBLE) hideOsd() else showOsd()
+        if (DeviceUtil.isTv(this)) {
+            binding.playerView.setOnClickListener {
+                if (binding.osdView.root.visibility == View.VISIBLE) hideOsd() else showOsd()
+            }
+        } else {
+            setupTouchGestures()
         }
+    }
+
+    /**
+     * Yalnızca telefonda: dokununca bilgi çubuğu açılır/kapanır, yukarı/aşağı kaydırınca kanal değişir,
+     * sola kaydırınca kanal listesi, sağa kaydırınca seçenekler açılır.
+     */
+    @android.annotation.SuppressLint("ClickableViewAccessibility")
+    private fun setupTouchGestures() {
+        val detector = android.view.GestureDetector(this, object : android.view.GestureDetector.SimpleOnGestureListener() {
+            override fun onDown(e: android.view.MotionEvent): Boolean = true
+
+            override fun onSingleTapConfirmed(e: android.view.MotionEvent): Boolean {
+                if (isAnyPanelVisible) {
+                    hideZappingMenu()
+                } else if (binding.osdView.root.visibility == View.VISIBLE) {
+                    hideOsd()
+                } else {
+                    showOsd()
+                }
+                return true
+            }
+
+            override fun onFling(e1: android.view.MotionEvent?, e2: android.view.MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+                val start = e1 ?: return false
+                val dx = e2.x - start.x
+                val dy = e2.y - start.y
+                val minDistance = DeviceUtil.dp(this@PlayerActivity, 60)
+                if (kotlin.math.abs(dy) > kotlin.math.abs(dx) && kotlin.math.abs(dy) > minDistance) {
+                    if (isAnyPanelVisible) return false
+                    zapBy(if (dy < 0) 1 else -1) // yukarı kaydır: sonraki kanal
+                    return true
+                }
+                if (kotlin.math.abs(dx) > minDistance) {
+                    if (dx > 0) showZappingChannels() else showOptionsPanel()
+                    return true
+                }
+                return false
+            }
+        })
+        binding.playerView.setOnTouchListener { _, event -> detector.onTouchEvent(event) }
     }
 
     private fun showAddToCategoryDialog(channel: Channel) {
@@ -1016,11 +1066,15 @@ class PlayerActivity : AppCompatActivity() {
         val osdVisible = binding.osdView.root.visibility == View.VISIBLE
         val focusInOsd = osdVisible && currentFocus?.let { isViewInOsd(it) } == true
         when (keyCode) {
+            // ▲: alt bilgi çubuğu kapalıysa önce onu açar, açıksa sonraki kanala geçer.
             KeyEvent.KEYCODE_DPAD_UP -> {
-                zapBy(1); return true
+                if (osdVisible) zapBy(1) else showOsd()
+                return true
             }
+            // ▼: her zaman doğrudan önceki kanala geçer.
             KeyEvent.KEYCODE_DPAD_DOWN -> {
-                zapBy(-1); return true
+                zapBy(-1)
+                return true
             }
             KeyEvent.KEYCODE_DPAD_LEFT -> {
                 if (focusInOsd) {

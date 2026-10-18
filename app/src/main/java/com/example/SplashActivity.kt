@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.data.repository.ChannelRepository
 import com.example.databinding.ActivitySplashBinding
 import com.example.tv.TvHomeChannels
+import com.example.util.PreferenceManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -45,7 +46,13 @@ class SplashActivity : AppCompatActivity() {
             val remaining = MIN_DURATION_MS - (System.currentTimeMillis() - startTime)
             if (remaining > 0) delay(remaining)
 
-            val intent = Intent(this@SplashActivity, MainActivity::class.java).apply {
+            // Seçim ekranı: doğrudan kanal açılmıyorsa ve "son kanalı oynat" kapalıysa gösterilir
+            val prefs = PreferenceManager(this@SplashActivity)
+            val showChoice = directChannelId == null && prefs.isLaunchChoiceEnabled() &&
+                !prefs.isResumeLastChannelEnabled()
+            val target = if (showChoice) LaunchChoiceActivity::class.java else MainActivity::class.java
+
+            val intent = Intent(this@SplashActivity, target).apply {
                 putExtra(MainActivity.EXTRA_FROM_LAUNCH, true)
                 directChannelId?.let { putExtra(MainActivity.EXTRA_PLAY_CHANNEL_ID, it) }
                 // Uygulama zaten açıkken ana ekran kartından gelinirse eski ekranlar temizlenir

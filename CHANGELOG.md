@@ -1,5 +1,17 @@
 # Değişiklik Günlüğü
 
+## [Yayınlanmadı]
+
+### Eklenenler
+- Açılışta "Televizyon İzle / Ekran Yansıt" seçim ekranı (Ayarlar'dan kapatılabilir).
+- Uygulama içi ekran yansıtma: telefonda "Bu Cihazdan Yansıt", TV'de "Bu Cihazda İzle". H.264 görüntü + Android 10+ cihazlarda ses, ağda otomatik bulma, IP ile bağlanma, döndürme desteği.
+- Chromecast / Miracast yerleşik yansıtma için yönlendirme ve yardım.
+- Telefon düzeni (yalnızca telefonda, TV görünümü değişmedi): dikey ana ekran ve kanal kartları, alt alta dizilen ayar butonları, dikey rehber ve seçim ekranları, yatay açılan oynatıcı, kaydırma hareketleri (yukarı/aşağı kanal, sağa liste, sola seçenekler).
+- Huawei, Honor, Xiaomi, Oppo, Vivo vb. cihazlarda yansıtma ekranında pil / arka plan izni uyarısı ve ilgili ayar ekranına kısayol.
+
+### Değişenler
+- İzlerken ▲: bilgi çubuğu kapalıysa önce çubuğu açar, açıksa sonraki kanala geçer. ▼ ve CH+/CH− doğrudan kanal değiştirir.
+
 ## [1.2.0] - 2026-10-18
 
 ### Eklenenler

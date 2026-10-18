@@ -32,6 +32,7 @@ import com.example.ui.adapter.TabType
 import com.example.ui.main.MainEvent
 import com.example.ui.main.MainUiState
 import com.example.ui.main.MainViewModel
+import com.example.util.DeviceUtil
 import com.example.util.PinDialog
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        applyPhoneLandscapeTweaks()
         setupTopBar()
         setupCategoryTabs()
         setupChannelsRecycler()
@@ -301,6 +303,23 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    /**
+     * Yatay telefonda (dar ekran) üst barın taşmaması için saat ve kumanda ipucu gizlenir,
+     * arama kutusu daraltılır. TV'de ve dikey telefonda (layout-port) hiçbir şey değişmez.
+     */
+    private fun applyPhoneLandscapeTweaks() {
+        if (DeviceUtil.isTv(this) || DeviceUtil.isPhonePortrait(this)) return
+        if (resources.configuration.screenWidthDp >= 900) return
+        binding.clockColumn.visibility = View.GONE
+        binding.tvRemoteHint.visibility = View.GONE
+        binding.etSearchQuery.layoutParams = binding.etSearchQuery.layoutParams.apply {
+            width = DeviceUtil.dp(this@MainActivity, 150)
+        }
+        binding.btnContinue.maxWidth = DeviceUtil.dp(this, 130)
+        val h = DeviceUtil.dp(this, 24)
+        binding.mainRootLayout.setPadding(h, DeviceUtil.dp(this, 16), h, DeviceUtil.dp(this, 12))
     }
 
     /** Ekran genişliğine göre sütun sayısı (TV'de 4-5, telefonda 2). */

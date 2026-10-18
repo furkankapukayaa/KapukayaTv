@@ -16,12 +16,24 @@
 ## ✨ Özellikler
 
 ### 📡 İzleme
-- **Gerçek TV gibi kanal değiştirme:** **▲ / ▼** veya **CH+ / CH−**. Hızlı basışlarda yalnızca son seçilen kanal açılır.
+- **Gerçek TV gibi kanal değiştirme:** **CH+ / CH−** ve **▼** doğrudan kanal değiştirir. **▲** ilk basışta bilgi çubuğunu açar, çubuk açıkken sonraki kanala geçer. Hızlı basışlarda yalnızca son seçilen kanal açılır.
 - **Önceki kanala dönüş:** Tek başına **0** (veya *Last*) tuşu.
 - **Rakamla kanal açma:** Yazarken kanal adı önizlenir (`12  TRT Spor`). Ana ekranda da çalışır.
 - **Kaldığın yerden devam:** Ana ekrandaki kırmızı buton son kanalı açar; isterseniz uygulama doğrudan son kanalla başlar.
 - **Akıllı yeniden bağlanma:** Sınırlı deneme → yedek kaynağa geçiş → net hata ekranı. İnternet geri gelince yayın kendiliğinden sürer.
 - **Ses dili, görüntü kalitesi, görüntü modu, uyku zamanlayıcı** ve destekleyen cihazlarda **Picture-in-Picture**.
+
+### 📲 Ekran yansıtma (Android)
+- Uygulama açılışında **Televizyon İzle** veya **Ekran Yansıt** seçilir (Ayarlar'dan kapatılabilir).
+- Aynı uygulamayı telefona da kurun. **TV'de:** Ekran Yansıt → *Bu Cihazda İzle*. **Telefonda:** Ekran Yansıt → *Bu Cihazdan Yansıt* → listeden TV'yi seçin.
+- Telefon ekranı donanım H.264 kodlamasıyla, sesi ise (Android 10+) 48 kHz stereo olarak Wi-Fi üzerinden aktarılır. TV ağda otomatik bulunur; bulunamazsa IP adresiyle bağlanılabilir. Telefon döndürülünce görüntü de döner.
+- Kısıtlar: ses için Android 10+ gerekir; bazı uygulamalar (Netflix, bankacılık vb.) görüntü/ses yakalanmasına izin vermez; akıcılık Wi-Fi kalitesine bağlıdır (5 GHz önerilir).
+- Aynı menüde, Chromecast/Miracast destekli TV'ler için cihazın **yerleşik yansıtmasına** yönlendirme de vardır. iPhone için AirPlay destekli TV'lerde Denetim Merkezi → Ekran Yansıtma kullanılabilir.
+
+### 📱 Telefonda kullanım
+- Uygulama telefona da kurulabilir; dikey ekranda telefona uygun düzen kullanılır (TV görünümü değişmez).
+- Oynatıcı telefonda yatay açılır. **Dokun:** bilgi çubuğu · **yukarı/aşağı kaydır:** kanal değiştir · **sağa kaydır:** kanal listesi · **sola kaydır:** seçenekler.
+- Huawei, Xiaomi, Oppo, Vivo gibi agresif pil yönetimi olan cihazlarda yansıtma ekranı, arka planda çalışma iznini açmak için yönlendirme gösterir. *(HarmonyOS NEXT / 5.0+ cihazlar Android uygulaması çalıştırmadığı için desteklenmez.)*
 
 ### 🏠 Android TV ana ekranı
 - TV'nin ana ekranında **"Kapukaya TV · Favoriler"** satırı. Favori kanallarınız (favori yoksa son izlenenler) kart olarak görünür; karta basınca kanal doğrudan başlar. Favoriler değiştikçe satır kendiliğinden güncellenir. *(Android 8.0+ TV cihazları)*
@@ -78,8 +90,9 @@
 ### İzleme ekranı
 | Tuş | İşlev |
 |---|---|
-| **▲ / CH+** | Sonraki kanal |
-| **▼ / CH−** | Önceki kanal (listede) |
+| **▲** | İlk basış bilgi çubuğunu açar; çubuk açıkken sonraki kanala geçer |
+| **▼** | Doğrudan önceki kanal (listede) |
+| **CH+ / CH−** | Her zaman doğrudan sonraki / önceki kanal |
 | **◀** | Kanal listesi (bir kez daha ◀: kategori seçimi) |
 | **▶** / **Menü** | Seçenekler: arama, görüntü modu, ses dili, kalite, uyku zamanlayıcı, rehber, yeniden yükle |
 | **OK** | Kanal bilgisi. Bilgi açıkken OK: alt butonlara geçer |
@@ -163,6 +176,10 @@ app/src/main/java/com/example/
 ├── PlayerActivity.kt          # Oynatıcı: zapping, OSD, yeniden deneme, ses/kalite, uyku
 ├── GuideActivity.kt           # Tam ekran yayın akışı
 ├── RemoteSetupActivity.kt     # Telefondan yönetim (QR)
+├── LaunchChoiceActivity.kt    # Açılış: Televizyon İzle / Ekran Yansıt
+├── MirrorMenuActivity.kt      # Yansıtma menüsü
+├── MirrorReceiverActivity.kt  # TV: yansıtılan ekranı gösterir
+├── MirrorSenderActivity.kt    # Telefon: TV seçip yansıtır
 ├── SettingsActivity.kt        # Ayarlar
 ├── ui/main/MainViewModel.kt   # Ana ekran durumu
 ├── ui/adapter/                # RecyclerView adapter'ları
@@ -174,6 +191,7 @@ app/src/main/java/com/example/
 │   ├── backup/                # Yedekleme / geri yükleme
 │   └── db/                    # Room
 ├── remote/                    # Yerel web sunucusu ve telefon sayfası
+├── mirror/                    # Ekran yansıtma: protokol, keşif, gönderici servis, alıcı
 ├── tv/                        # Android TV ana ekran satırı
 ├── util/                      # Ayarlar, Türkçe arama, PIN penceresi, ağ
 └── receiver/BootReceiver.kt   # Cihaz açılışında başlatma

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:keepScreenOn="true">
+
+    <!-- Telefon görüntüsü (en-boy oranı korunarak ortalanır) -->
+    <androidx.media3.ui.AspectRatioFrameLayout
+        android:id="@+id/mirrorAspectFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+        <SurfaceView
+            android:id="@+id/mirrorSurface"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.media3.ui.AspectRatioFrameLayout>
+
+    <!-- Bağlantı bekleniyor paneli -->
+    <LinearLayout
+        android:id="@+id/mirrorWaitingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_splash_gradient"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="48dp">
+
+        <FrameLayout
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@drawable/bg_choice_icon">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_cast" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif-bold"
+            android:text="@string/mirror_waiting_title"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvMirrorDeviceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/accent_blue"
+            android:textSize="18sp"
+            tools:text="Bu TV: Salon TV" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="sans-serif"
+            android:gravity="start"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/mirror_waiting_steps"
+            android:textColor="@color/text_secondary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tvMirrorAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:fontFamily="monospace"
+            android:textColor="@color/text_muted"
+            android:textSize="13sp"
+            tools:text="Elle bağlanmak için: 192.168.1.25" />
+
+        <TextView
+            android:id="@+id/tvMirrorStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/accent_gold"
+            android:textSize="14sp"
+            tools:text="Bağlantı kesildi" />
+    </LinearLayout>
+
+    <!-- Bağlanınca kısa süre görünen bilgi -->
+    <TextView
+        android:id="@+id/tvMirrorConnectedBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="28dp"
+        android:background="@drawable/bg_osd_panel"
+        android:fontFamily="sans-serif-medium"
+        android:paddingStart="18dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="📱 Pixel 8 yansıtıyor · Çıkmak için Geri"
+        tools:visibility="visible" />
+</FrameLayout>

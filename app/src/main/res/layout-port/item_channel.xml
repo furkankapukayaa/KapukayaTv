@@ -1,0 +1,116 @@
+<!-- Dikey telefon: dar kartlarda logo, sağdaki etiketlerle çakışmasın diye aradaki alana sığdırılır.
+     TV her zaman yatay olduğu için bu dosya TV'de kullanılmaz. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardChannel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/bg_channel_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="false"
+    android:longClickable="true"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Üst satır: logo | kalite etiketi + favori yıldızı -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp">
+
+        <ImageView
+            android:id="@+id/ivChannelLogo"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="6dp"
+            android:layout_toStartOf="@+id/channelTopActions"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/all_channels"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_tv" />
+
+        <LinearLayout
+            android:id="@+id/channelTopActions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvQualityBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_quality_badge"
+                android:fontFamily="sans-serif-black"
+                android:paddingStart="5dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="1dp"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                tools:text="FHD"
+                tools:visibility="visible" />
+
+            <!-- Dokunmatik cihazlarda tıklanabilir; kumandada uzun basma menüsü kullanılır -->
+            <ImageButton
+                android:id="@+id/btnFavorite"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/favorites"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:padding="4dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_star_border"
+                app:tint="@color/icon_focus_inverse" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvChannelName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-medium"
+        android:maxLines="1"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        tools:text="1. TRT 1" />
+
+    <!-- EPG varsa şu anki program, yoksa grup adı -->
+    <TextView
+        android:id="@+id/tvChannelCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="0.02"
+        android:maxLines="1"
+        android:textColor="@color/text_secondary"
+        android:textSize="12sp"
+        tools:text="Genel · Haber" />
+
+    <ProgressBar
+        android:id="@+id/pbEpgProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:max="100"
+        android:progressDrawable="@drawable/bg_epg_progress"
+        android:visibility="gone"
+        tools:progress="40"
+        tools:visibility="visible" />
+
+</LinearLayout>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Açılış ve yansıtma menülerindeki büyük seçim kartı -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@drawable/bg_choice_card"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="false"
+    android:gravity="center"
+    android:minHeight="220dp"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <FrameLayout
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:background="@drawable/bg_choice_icon">
+
+        <ImageView
+            android:id="@+id/cardIcon"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            tools:src="@drawable/ic_tv" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/cardTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:fontFamily="sans-serif-bold"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        tools:text="Televizyon İzle" />
+
+    <TextView
+        android:id="@+id/cardSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:maxWidth="320dp"
+        android:textColor="@color/text_secondary"
+        android:textSize="13sp"
+        tools:text="Canlı kanalları izleyin" />
+</LinearLayout>

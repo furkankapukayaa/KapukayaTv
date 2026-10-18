@@ -28,6 +28,7 @@ import com.example.data.epg.EpgRepository
 import com.example.data.repository.ChannelRepository
 import com.example.databinding.ActivitySettingsBinding
 import com.example.ui.adapter.ManageCategoryAdapter
+import com.example.util.DeviceUtil
 import com.example.util.PinDialog
 import com.example.util.PreferenceManager
 import kotlinx.coroutines.Dispatchers
@@ -94,6 +95,10 @@ class SettingsActivity : AppCompatActivity() {
         channelRepository = ChannelRepository.getInstance(this)
         backupManager = BackupManager(this)
 
+        // Yalnızca telefonda: dar kenar boşluğu ve yan yana butonları alt alta dizme (TV etkilenmez)
+        DeviceUtil.applyCompactPadding(binding.root)
+        DeviceUtil.stackButtonRows(binding.root)
+
         setupToolbar()
         setupToggles()
         setupM3uSection()
@@ -107,6 +112,13 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.btnRemoteSetup.setOnClickListener {
             startActivity(Intent(this, RemoteSetupActivity::class.java))
+        }
+
+        binding.btnOpenMirror.setOnClickListener {
+            startActivity(Intent(this, MirrorMenuActivity::class.java))
+        }
+        setupToggle(binding.layoutLaunchChoiceToggle, binding.switchLaunchChoice, prefManager.isLaunchChoiceEnabled()) { enabled ->
+            prefManager.setLaunchChoiceEnabled(enabled)
         }
     }
 

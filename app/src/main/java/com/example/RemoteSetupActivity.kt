@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.databinding.ActivityRemoteSetupBinding
 import com.example.remote.RemoteConfigServer
+import com.example.util.DeviceUtil
 import com.example.util.NetworkUtil
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -26,6 +27,7 @@ class RemoteSetupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRemoteSetupBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        DeviceUtil.applyCompactPadding(binding.root)
         binding.btnRemoteBack.setOnClickListener { finish() }
         binding.btnRemoteBack.requestFocus()
     }

@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -17,6 +19,7 @@ import com.example.data.repository.ChannelRepository
 import com.example.databinding.ActivityGuideBinding
 import com.example.ui.adapter.GuideChannelAdapter
 import com.example.ui.adapter.GuideProgrammeAdapter
+import com.example.util.DeviceUtil
 import kotlinx.coroutines.launch
 
 /**
@@ -51,6 +54,7 @@ class GuideActivity : AppCompatActivity() {
         binding = ActivityGuideBinding.inflate(layoutInflater)
         setContentView(binding.root)
         repository = ChannelRepository.getInstance(this)
+        applyPhoneLayout()
 
         binding.btnGuideBack.setOnClickListener { finish() }
         binding.btnGuideSettings.setOnClickListener {
@@ -80,6 +84,20 @@ class GuideActivity : AppCompatActivity() {
         binding.rvGuideProgrammes.itemAnimator = null
 
         loadGuide()
+    }
+
+    /** Dikey telefonda iki panel alt alta dizilir. TV'de değişiklik yapılmaz. */
+    private fun applyPhoneLayout() {
+        DeviceUtil.applyCompactPadding(binding.root)
+        if (!DeviceUtil.isPhonePortrait(this)) return
+        val content = binding.guideContent
+        content.orientation = LinearLayout.VERTICAL
+        binding.rvGuideChannels.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0.42f)
+        binding.rvGuideChannels.setPadding(0, 0, 0, 0)
+        val programmesPanel = content.getChildAt(1)
+        programmesPanel.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0.58f).apply {
+            topMargin = DeviceUtil.dp(this@GuideActivity, 10)
+        }
     }
 
     private fun loadGuide() {
