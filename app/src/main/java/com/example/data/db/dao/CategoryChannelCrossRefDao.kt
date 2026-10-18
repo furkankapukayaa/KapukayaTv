@@ -23,6 +23,6 @@ interface CategoryChannelCrossRefDao {
     """)
     suspend fun getChannelsForCategory(categoryId: Long): List<Channel>
 
-    @Query("SELECT categoryId FROM category_channel_cross_ref WHERE channelId = :channelId")
-    suspend fun getCategoriesForChannel(channelId: String): List<Long>
+    @Query("SELECT DISTINCT channelId FROM category_channel_cross_ref")
+    suspend fun getAllCategorizedChannelIds(): List<String>
 }

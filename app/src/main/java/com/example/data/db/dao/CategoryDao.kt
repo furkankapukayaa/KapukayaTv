@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.data.db.entity.Category
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {
@@ -20,9 +19,6 @@ interface CategoryDao {
 
     @Delete
     suspend fun deleteCategory(category: Category)
-
-    @Query("SELECT * FROM categories ORDER BY name ASC")
-    fun getAllCategories(): Flow<List<Category>>
 
     @Query("SELECT * FROM categories ORDER BY name ASC")
     suspend fun getAllCategoriesList(): List<Category>

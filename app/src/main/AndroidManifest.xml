@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Android TV ana ekranına "Favoriler" satırı eklemek için -->
+    <uses-permission android:name="com.android.providers.tv.permission.WRITE_EPG_DATA" />
 
     <!-- Android TV features: touchscreen is NOT required -->
     <uses-feature
@@ -40,6 +42,13 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
+            <!-- TV ana ekranındaki kanal kartları: kapukayatv://channel/<id> -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="kapukayatv" />
+            </intent-filter>
         </activity>
 
         <!-- Main Screen -->
@@ -63,6 +72,20 @@
             android:name=".SettingsActivity"
             android:exported="false"
             android:label="@string/settings"
+            android:theme="@style/Theme.KapukayaTv" />
+
+        <!-- Tam ekran yayın akışı rehberi -->
+        <activity
+            android:name=".GuideActivity"
+            android:exported="false"
+            android:label="@string/guide_title"
+            android:theme="@style/Theme.KapukayaTv" />
+
+        <!-- Telefondan yönetim (QR kod) -->
+        <activity
+            android:name=".RemoteSetupActivity"
+            android:exported="false"
+            android:label="@string/remote_setup_title"
             android:theme="@style/Theme.KapukayaTv" />
 
         <!-- Boot Completed Receiver -->

@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_splash_gradient">
 
+    <!-- Logonun arkasındaki yumuşak kırmızı ışıma -->
+    <View
+        android:id="@+id/viewSplashGlow"
+        android:layout_width="520dp"
+        android:layout_height="520dp"
+        android:background="@drawable/bg_splash_glow"
+        app:layout_constraintBottom_toBottomOf="@id/splashCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/splashCenter" />
+
     <LinearLayout
+        android:id="@+id/splashCenter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -14,21 +27,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.45">
+        app:layout_constraintVertical_bias="0.42">
 
         <ImageView
             android:id="@+id/ivSplashLogo"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"
             android:src="@drawable/logo" />
 
-        <!-- Title -->
+        <!-- Marka -->
         <LinearLayout
+            android:id="@+id/splashWordmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="26dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -36,42 +50,87 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
-                android:letterSpacing="0.1"
+                android:letterSpacing="0.12"
                 android:text="KAPUKAYA"
                 android:textColor="@color/white"
-                android:textSize="36sp" />
+                android:textSize="34sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="10dp"
+                android:background="@color/accent_red"
                 android:fontFamily="sans-serif-black"
+                android:paddingStart="8dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="1dp"
                 android:text="TV"
-                android:textColor="@color/accent_red"
-                android:textSize="36sp" />
+                android:textColor="@color/white"
+                android:textSize="30sp" />
         </LinearLayout>
 
+        <!-- İnce ayırıcı çizgi -->
+        <View
+            android:id="@+id/splashDivider"
+            android:layout_width="160dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_splash_divider" />
+
         <TextView
+            android:id="@+id/tvSplashTagline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="14dp"
             android:fontFamily="sans-serif-light"
-            android:letterSpacing="0.3"
-            android:text="P R E M I U M   I P T V"
+            android:letterSpacing="0.08"
+            android:text="@string/splash_tagline"
             android:textColor="@color/text_secondary"
-            android:textSize="13sp" />
-
+            android:textSize="15sp" />
     </LinearLayout>
 
-    <ProgressBar
-        android:id="@+id/pbSplash"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="48dp"
-        android:indeterminateTint="@color/accent_red"
+    <!-- Alt kısım: yükleme durumu -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ProgressBar
+            android:id="@+id/pbSplash"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="180dp"
+            android:layout_height="3dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/accent_red" />
+
+        <TextView
+            android:id="@+id/tvSplashStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/splash_status_loading"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSplashVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/text_muted"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="v1.2.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

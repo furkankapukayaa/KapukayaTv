@@ -106,6 +106,118 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <!-- Açılışta son kanal -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutResumeToggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_channel_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/resume_last_channel"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/resume_last_channel_desc"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchResumeLastChannel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Telefondan yönet -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/remote_setup_title"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/remote_setup_desc"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnRemoteSetup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="QR Kodu Göster"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
             <!-- Card 2: M3U Playlist URL & Sync -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -128,6 +240,85 @@
                         android:text="@string/m3u_url_title"
                         android:textColor="@color/text_primary"
                         android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvActivePlaylist"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textColor="@color/accent_blue"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnSwitchPlaylist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Liste Değiştir"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnAddPlaylist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="+ Yeni Liste"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnRenamePlaylist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Yeniden Adlandır"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnDeletePlaylist"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Listeyi Sil"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
 
                     <EditText
                         android:id="@+id/etM3uUrl"
@@ -160,9 +351,534 @@
                             android:paddingStart="20dp"
                             android:paddingEnd="20dp"
                             android:text="Kaydet ve Kanalları Yenile"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnResetM3u"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="Varsayılan Listeye Dön"
+                            android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvPlaylistStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        tools:text="182 kanal · Son güncelleme: 18.10.2026 14:32" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- EPG (Yayın Akışı) -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/epg_url_title"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/epg_url_desc"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <EditText
+                        android:id="@+id/etEpgUrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_category_tab"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="https://example.com/epg.xml.gz"
+                        android:inputType="textUri"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:textColor="@color/text_primary"
+                        android:textColorHint="@color/text_muted"
+                        android:textSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnSaveEpg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="20dp"
+                            android:paddingEnd="20dp"
+                            android:text="Kaydet ve Yayın Akışını Yükle"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvEpgStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp"
+                        tools:text="Yayın akışı yüklü · 120 kanal eşleşti" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Liste görünümü -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutMergeToggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_channel_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/merge_duplicates"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/merge_duplicates_desc"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchMergeDuplicates"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutGroupTabsToggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_channel_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/group_tabs"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/group_tabs_desc"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchGroupTabs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Ebeveyn kilidi -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Ebeveyn Kilidi"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Seçtiğiniz gruplar ve kategoriler PIN girilmeden görünmez. PIN uygulama kapanana kadar geçerlidir."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvParentalStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnSetPin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="PIN Belirle / Değiştir"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnLockedItems"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Kilitli Kategoriler"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnRemovePin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Kilidi Kaldır"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Kanal bakımı -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Kanal Bakımı"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Yayını açılmayan kanallar arka planda tespit edilip soluk gösterilir. 300 kanala kadar olan listeler günde bir kez otomatik kontrol edilir."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tvHealthStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnHealthCheck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Kanalları Şimdi Kontrol Et"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnHiddenChannels"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Gizlenen Kanallar"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:id="@+id/layoutHideBrokenToggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_channel_card"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="18dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Çalışmayan Kanalları Gizle"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Açık olduğunda yayını açılmayan kanallar listelerde hiç gösterilmez"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchHideBroken"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:clickable="false"
+                        android:focusable="false" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Yedekleme -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/bg_card"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Yedekleme"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="sans-serif"
+                        android:text="Favoriler, kategoriler, listeler ve ayarlar tek bir dosyaya kaydedilir. Cihazda dosya seçici yoksa Telefondan Yönet ekranını kullanın."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnExportBackup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Yedeği Kaydet"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <Button
+                            android:id="@+id/btnImportBackup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="44dp"
+                            android:layout_marginStart="12dp"
+                            android:background="@drawable/bg_button_selector"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="sans-serif-medium"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:text="Yedekten Geri Yükle"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -207,6 +923,7 @@
                             android:paddingStart="14dp"
                             android:paddingEnd="14dp"
                             android:text="+ Yeni Kategori Ekle"
+                            android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
                     </LinearLayout>
@@ -261,6 +978,7 @@
                             android:focusableInTouchMode="false"
                             android:fontFamily="sans-serif-medium"
                             android:text="Cihaz Hakkında"
+                            android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
 
@@ -275,9 +993,24 @@
                             android:focusableInTouchMode="false"
                             android:fontFamily="sans-serif-medium"
                             android:text="Uygulama Hakkında"
+                            android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
                     </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnClearRecents"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_button_selector"
+                        android:focusable="true"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Son İzlenenler Geçmişini Temizle"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

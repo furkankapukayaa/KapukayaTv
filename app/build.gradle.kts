@@ -15,8 +15,8 @@ android {
     applicationId = "com.aistudio.kapukayatv.xkpmtr"
     minSdk = 24
     targetSdk = 36
-    versionCode = 1
-    versionName = "1.0"
+    versionCode = 3
+    versionName = "1.2.0"
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
@@ -42,10 +42,17 @@ android {
   buildTypes {
     release {
       isCrunchPngs = false
-      isMinifyEnabled = false
+      // Kod küçültme: APK boyutunu belirgin şekilde düşürür
+      isMinifyEnabled = true
+      isShrinkResources = true
       proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-      // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in
-      // AI Studio.
+      // Keystore ortam değişkenleri varsa release anahtarıyla, yoksa debug anahtarıyla imzalanır
+      // (böylece CI'da üretilen APK da kurulabilir).
+      signingConfig = if (System.getenv("KEYSTORE_PATH") != null) {
+        signingConfigs.getByName("release")
+      } else {
+        signingConfigs.getByName("debug")
+      }
     }
     debug {
       // Do not remove or modify this signingConfig assignment. It is necessary for Android apps in
@@ -106,4 +113,15 @@ dependencies {
   implementation(libs.kotlinx.coroutines.core)
   implementation(libs.kotlinx.coroutines.android)
   implementation(libs.androidx.lifecycle.runtime.ktx)
+  implementation(libs.androidx.lifecycle.viewmodel.ktx)
+  implementation(libs.androidx.activity.ktx)
+
+  // Android TV ana ekranı kanal satırı
+  implementation(libs.androidx.tvprovider)
+
+  // Telefondan yönetim ekranındaki QR kod
+  implementation(libs.zxing.core)
+
+  // Unit tests (M3U parser, search)
+  testImplementation(libs.junit)
 }

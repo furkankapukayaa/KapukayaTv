@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainRootLayout"
     android:layout_width="match_parent"
@@ -8,160 +7,379 @@
     android:background="@color/bg_dark"
     android:orientation="vertical"
     android:paddingStart="48dp"
-    android:paddingTop="32dp"
+    android:paddingTop="28dp"
     android:paddingEnd="48dp"
-    android:paddingBottom="32dp">
+    android:paddingBottom="24dp">
 
-    <!-- Netflix-Style Top Bar -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <!-- App Brand -->
-        <LinearLayout
-            android:id="@+id/brandLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:contentDescription="@string/app_name"
-                android:scaleType="fitCenter"
-                android:src="@drawable/logo" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="sans-serif-black"
-                android:letterSpacing="0.04"
-                android:text="KAPUKAYA"
-                android:textColor="@color/white"
-                android:textSize="22sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:background="@color/accent_red"
-                android:fontFamily="sans-serif-black"
-                android:paddingStart="6dp"
-                android:paddingTop="1dp"
-                android:paddingEnd="6dp"
-                android:paddingBottom="1dp"
-                android:text="TV"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-        </LinearLayout>
-
-        <!-- Right Action Buttons (Voice Search & Settings) -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <!-- Search Field -->
-            <EditText
-                android:id="@+id/etSearchQuery"
-                android:layout_width="200dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/bg_category_tab"
-                android:drawableStart="@android:drawable/ic_menu_search"
-                android:drawablePadding="8dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:hint="@string/search_hint"
-                android:imeOptions="actionSearch"
-                android:inputType="text"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textColor="@color/text_primary"
-                android:textColorHint="@color/text_muted"
-                android:textSize="13sp" />
-
-            <!-- Voice Search Button -->
-            <ImageButton
-                android:id="@+id/btnVoiceSearch"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/bg_button_selector"
-                android:contentDescription="Sesli Arama"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                android:padding="9dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_mic" />
-
-            <!-- Settings Button -->
-            <ImageButton
-                android:id="@+id/btnSettings"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/bg_button_selector"
-                android:contentDescription="@string/settings"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                android:padding="9dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_settings" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-    <!-- Category Tabs Navigation -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        tools:listitem="@layout/item_category_tab" />
-
-    <!-- Channel Cards Grid -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvChannels"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_weight="1"
-        android:clipToPadding="false"
-        tools:listitem="@layout/item_channel" />
-
-    <!-- Empty State View -->
+    <!-- Üst Bar: Marka | Son Kanal | Arama | Sesli Arama | Yenile | Ayarlar | Saat -->
     <LinearLayout
-        android:id="@+id/mainEmptyLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:contentDescription="@string/all_channels"
-            android:src="@drawable/ic_tv" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitCenter"
+            android:src="@drawable/logo" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="Kanal Bulunamadı"
-            android:textColor="@color/text_secondary"
-            android:textSize="15sp" />
+            android:layout_marginStart="10dp"
+            android:fontFamily="sans-serif-black"
+            android:letterSpacing="0.04"
+            android:text="KAPUKAYA"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:background="@color/accent_red"
+            android:fontFamily="sans-serif-black"
+            android:paddingStart="6dp"
+            android:paddingTop="1dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="1dp"
+            android:text="TV"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Kaldığın yerden devam: son izlenen kanal -->
+        <Button
+            android:id="@+id/btnContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/bg_continue_button"
+            android:drawableStart="@drawable/ic_play"
+            android:drawablePadding="6dp"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:fontFamily="sans-serif-bold"
+            android:maxWidth="170dp"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="16dp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:visibility="gone"
+            tools:text="TRT 1"
+            tools:visibility="visible" />
+
+        <EditText
+            android:id="@+id/etSearchQuery"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_category_tab"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="8dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:hint="@string/search_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_muted"
+            android:textSize="13sp" />
+
+        <ImageButton
+            android:id="@+id/btnVoiceSearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_button_selector"
+            android:contentDescription="@string/voice_search"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:padding="9dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_mic" />
+
+        <ImageButton
+            android:id="@+id/btnGuide"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_button_selector"
+            android:contentDescription="@string/guide_title"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:padding="9dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_guide" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_button_selector"
+            android:contentDescription="@string/settings"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            android:padding="9dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_settings" />
+
+        <!-- Saat ve tarih -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:gravity="end"
+            android:orientation="vertical">
+
+            <TextClock
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:format12Hour="HH:mm"
+                android:format24Hour="HH:mm"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+
+            <TextClock
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:format12Hour="d MMMM EEEE"
+                android:format24Hour="d MMMM EEEE"
+                android:textColor="@color/text_secondary"
+                android:textSize="11sp" />
+        </LinearLayout>
     </LinearLayout>
+
+    <!-- Kategori sekmeleri -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        tools:listitem="@layout/item_category_tab" />
+
+    <!-- Bölüm bilgisi ve kumanda ipucu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <TextView
+            android:id="@+id/tvSectionInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            tools:text="Tüm Kanallar · 182 kanal" />
+
+        <TextView
+            android:id="@+id/tvOfflineBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/bg_badge_warning"
+            android:fontFamily="sans-serif-medium"
+            android:paddingStart="8dp"
+            android:paddingTop="2dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="2dp"
+            android:text="@string/offline_badge"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/tvRemoteHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@string/main_remote_hint"
+            android:textColor="@color/text_muted"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_weight="1">
+
+        <!-- Kanal kartları -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChannels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="24dp"
+            tools:listitem="@layout/item_channel" />
+
+        <!-- İlk yükleme göstergesi -->
+        <LinearLayout
+            android:id="@+id/mainLoadingLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminateTint="@color/accent_red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/loading_channels"
+                android:textColor="@color/text_secondary"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Boş durum -->
+        <LinearLayout
+            android:id="@+id/mainEmptyLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:contentDescription="@string/all_channels"
+                android:src="@drawable/ic_tv" />
+
+            <TextView
+                android:id="@+id/tvEmptyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/empty_no_channels"
+                android:textColor="@color/text_primary"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tvEmptyMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:maxWidth="460dp"
+                android:textColor="@color/text_secondary"
+                android:textSize="13sp"
+                tools:text="Açıklama" />
+
+            <LinearLayout
+                android:id="@+id/emptyActions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnEmptyRetry"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/retry"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnEmptySettings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/settings"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <Button
+                    android:id="@+id/btnEmptyRemote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_button_selector"
+                    android:focusable="true"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="sans-serif-medium"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:text="@string/remote_setup_title"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Rakam tuşlarıyla kanal numarası girişi -->
+        <TextView
+            android:id="@+id/tvMainNumberInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_osd_panel"
+            android:elevation="16dp"
+            android:fontFamily="sans-serif-bold"
+            android:paddingStart="28dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="28dp"
+            android:paddingBottom="12dp"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:visibility="gone"
+            tools:text="12"
+            tools:visibility="visible" />
+    </FrameLayout>
 
 </LinearLayout>

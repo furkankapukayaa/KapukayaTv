@@ -9,56 +9,60 @@
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="false"
+    android:longClickable="true"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Top Row with Logo and Action Buttons -->
+    <!-- Üst satır: logo | kalite etiketi + favori yıldızı -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="64dp">
 
-        <!-- Channel Logo -->
         <ImageView
             android:id="@+id/ivChannelLogo"
-            android:layout_width="64dp"
+            android:layout_width="96dp"
             android:layout_height="64dp"
+            android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:contentDescription="@string/all_channels"
-            android:scaleType="fitCenter"
+            android:scaleType="fitStart"
             android:src="@drawable/ic_tv" />
 
-        <!-- Right Side Action Buttons (Add Category & Favorite) -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/btnAddCategory"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginEnd="8dp"
-                android:background="@drawable/bg_button_selector"
-                android:contentDescription="Kategoriye Ekle"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-                android:padding="6dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_folder_plus"
-                app:tint="@color/icon_focus_inverse" />
+            <TextView
+                android:id="@+id/tvQualityBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:background="@drawable/bg_quality_badge"
+                android:fontFamily="sans-serif-black"
+                android:paddingStart="5dp"
+                android:paddingTop="1dp"
+                android:paddingEnd="5dp"
+                android:paddingBottom="1dp"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone"
+                tools:text="FHD"
+                tools:visibility="visible" />
 
+            <!-- Dokunmatik cihazlarda tıklanabilir; kumandada uzun basma menüsü kullanılır -->
             <ImageButton
                 android:id="@+id/btnFavorite"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:background="@drawable/bg_button_selector"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@android:color/transparent"
                 android:contentDescription="@string/favorites"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:padding="5dp"
+                android:padding="4dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_star_border"
                 app:tint="@color/icon_focus_inverse" />
@@ -66,7 +70,6 @@
 
     </RelativeLayout>
 
-    <!-- Channel Name -->
     <TextView
         android:id="@+id/tvChannelName"
         android:layout_width="match_parent"
@@ -77,9 +80,9 @@
         android:maxLines="1"
         android:textColor="@color/white"
         android:textSize="15sp"
-        tools:text="1. TRT 1 HD" />
+        tools:text="1. TRT 1" />
 
-    <!-- Channel Category / Group -->
+    <!-- EPG varsa şu anki program, yoksa grup adı -->
     <TextView
         android:id="@+id/tvChannelCategory"
         android:layout_width="match_parent"
@@ -91,49 +94,18 @@
         android:maxLines="1"
         android:textColor="@color/text_secondary"
         android:textSize="12sp"
-        tools:text="Ulusal Kanallar" />
+        tools:text="Genel · Haber" />
 
-    <!-- Reorder Controls (Visible in Favorites Tab) -->
-    <LinearLayout
-        android:id="@+id/reorderContainer"
+    <ProgressBar
+        android:id="@+id/pbEpgProgress"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="end"
-        android:orientation="horizontal"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:max="100"
+        android:progressDrawable="@drawable/bg_epg_progress"
         android:visibility="gone"
-        tools:visibility="visible">
-
-        <Button
-            android:id="@+id/btnMoveUp"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:background="@drawable/bg_button_selector"
-            android:focusable="true"
-            android:focusableInTouchMode="false"
-            android:fontFamily="sans-serif-bold"
-            android:minWidth="34dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:text="▲ YUKARI"
-            android:textColor="@color/text_focus_inverse_primary"
-            android:textSize="10sp" />
-
-        <Button
-            android:id="@+id/btnMoveDown"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:layout_marginStart="6dp"
-            android:background="@drawable/bg_button_selector"
-            android:focusable="true"
-            android:focusableInTouchMode="false"
-            android:fontFamily="sans-serif-bold"
-            android:minWidth="34dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:text="▼ AŞAĞI"
-            android:textColor="@color/text_focus_inverse_primary"
-            android:textSize="10sp" />
-    </LinearLayout>
+        tools:progress="40"
+        tools:visibility="visible" />
 
 </LinearLayout>

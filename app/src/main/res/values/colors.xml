@@ -1,51 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Premium Netflix UI Colors -->
+    <!-- Arayüz renkleri -->
     <color name="bg_dark">#000000</color>
-    <color name="bg_dark_deep">#000000</color>
-    <color name="bg_gradient_top">#0A0A0A</color>
 
     <color name="bg_card">#141414</color>
     <color name="bg_card_top">#1F1F1F</color>
     <color name="bg_card_focused">#2F2F2F</color>
 
     <color name="card_stroke_unfocused">#333333</color>
-    <color name="card_stroke_focused">#E50914</color>
-
-    <color name="netflix_red">#E50914</color>
     <color name="netflix_red_dark">#B20710</color>
 
-    <color name="accent_primary">#E50914</color>
-    <color name="accent_primary_deep">#991B1B</color>
-    <color name="accent_primary_light">#F87171</color>
-
     <color name="accent_red">#E50914</color>
-    <color name="accent_red_deep">#B91C1C</color>
-    <color name="accent_red_light">#EF4444</color>
 
     <color name="accent_blue">#38BDF8</color>
-    <color name="accent_blue_light">#7DD3FC</color>
     <color name="accent_cyan">#00F0FF</color>
-    <color name="accent_cyan_glow">#4000F0FF</color>
-    <color name="accent_cyan_glow_soft">#2000F0FF</color>
     <color name="accent_gold">#FBBF24</color>
-    <color name="accent_green">#10B981</color>
-
-    <color name="divider_gradient_edge">#00141414</color>
-    <color name="divider_gradient_center">#33FFFFFF</color>
 
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#999999</color>
     <color name="text_muted">#666666</color>
-
-    <color name="focus_white">#FFFFFF</color>
-    <color name="focus_overlay">#33FFFFFF</color>
     <color name="transparent">#00000000</color>
 
     <color name="osd_background">#E6000000</color>
     <color name="zapping_background">#E6141414</color>
-
-    <color name="ripple_color">#33E50914</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

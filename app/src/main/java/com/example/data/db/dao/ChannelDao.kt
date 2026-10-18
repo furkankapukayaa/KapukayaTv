@@ -14,10 +14,4 @@ interface ChannelDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertChannels(channels: List<Channel>)
-
-    @Query("SELECT * FROM channels ORDER BY channelNumber ASC, name ASC")
-    suspend fun getAllChannels(): List<Channel>
-
-    @Query("SELECT * FROM channels WHERE id = :id LIMIT 1")
-    suspend fun getChannelById(id: String): Channel?
 }

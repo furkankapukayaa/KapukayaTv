@@ -1,6 +1,5 @@
 package com.example.ui.adapter
 
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -8,15 +7,19 @@ import com.example.databinding.ItemCategoryTabBinding
 
 enum class TabType {
     FAVORITES,
+    RECENT,
     ALL,
-    CUSTOM
+    CUSTOM,
+    GROUP
 }
 
 data class CategoryTabItem(
     val id: String,
     val name: String,
     val type: TabType,
-    val customCategoryId: Long = -1L
+    val customCategoryId: Long = -1L,
+    /** GROUP sekmeleri için M3U grup adı */
+    val groupName: String? = null
 )
 
 class CategoryTabAdapter(
@@ -29,6 +32,7 @@ class CategoryTabAdapter(
     fun setItems(newItems: List<CategoryTabItem>) {
         items.clear()
         items.addAll(newItems)
+        selectedIndex = selectedIndex.coerceIn(0, (items.size - 1).coerceAtLeast(0))
         notifyDataSetChanged()
     }
 
@@ -37,6 +41,15 @@ class CategoryTabAdapter(
         selectedIndex = position
         notifyItemChanged(oldIndex)
         notifyItemChanged(selectedIndex)
+    }
+
+    fun selectedId(): String? = items.getOrNull(selectedIndex)?.id
+
+    /** Sekmeyi kimliğiyle seçer. Bulunamazsa -1 döner. */
+    fun selectById(id: String): Int {
+        val index = items.indexOfFirst { it.id == id }
+        if (index != -1) setSelectedPosition(index)
+        return index
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TabViewHolder {
@@ -60,7 +73,7 @@ class CategoryTabAdapter(
         init {
             binding.root.setOnFocusChangeListener { view, hasFocus ->
                 if (hasFocus) {
-                    view.animate().scaleX(1.02f).scaleY(1.02f).setDuration(100).start()
+                    view.animate().scaleX(1.04f).scaleY(1.04f).setDuration(100).start()
                 } else {
                     view.animate().scaleX(1.0f).scaleY(1.0f).setDuration(100).start()
                 }
@@ -72,20 +85,6 @@ class CategoryTabAdapter(
                     setSelectedPosition(position)
                     onTabClick(items[position])
                 }
-            }
-
-            binding.root.setOnKeyListener { _, keyCode, event ->
-                if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) &&
-                    event.action == KeyEvent.ACTION_UP
-                ) {
-                    val position = bindingAdapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        setSelectedPosition(position)
-                        onTabClick(items[position])
-                        return@setOnKeyListener true
-                    }
-                }
-                false
             }
         }
 

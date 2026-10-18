@@ -1,12 +1,12 @@
 package com.example.ui.adapter
 
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.R
+import com.example.data.epg.EpgRepository
 import com.example.data.model.Channel
 import com.example.databinding.ItemZappingChannelBinding
 
@@ -14,12 +14,15 @@ class ZappingChannelAdapter(
     private val onChannelSelected: (Channel) -> Unit,
     private val onMoveUp: (Channel) -> Unit,
     private val onMoveDown: (Channel) -> Unit,
-    private val onDelete: (Channel) -> Unit
+    private val onDelete: (Channel) -> Unit,
+    private val onLongPress: (Channel) -> Unit
 ) : RecyclerView.Adapter<ZappingChannelAdapter.ZappingViewHolder>() {
 
     private val items = mutableListOf<Channel>()
     private var activeChannelId: String? = null
     var isEditMode = false
+
+    val channels: List<Channel> get() = items
 
     fun setChannels(newItems: List<Channel>, currentId: String?) {
         items.clear()
@@ -27,6 +30,16 @@ class ZappingChannelAdapter(
         activeChannelId = currentId
         notifyDataSetChanged()
     }
+
+    fun setActiveChannel(currentId: String?) {
+        val old = items.indexOfFirst { it.id == activeChannelId }
+        activeChannelId = currentId
+        val new = items.indexOfFirst { it.id == currentId }
+        if (old != -1) notifyItemChanged(old)
+        if (new != -1) notifyItemChanged(new)
+    }
+
+    fun indexOf(channelId: String?): Int = items.indexOfFirst { it.id == channelId }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ZappingViewHolder {
         val binding = ItemZappingChannelBinding.inflate(
@@ -47,8 +60,7 @@ class ZappingChannelAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         init {
-            // Animasyon kaldırıldı. Odak değişimi bg_zapping_item (stroke) ile CSS mantığında yapılıyor.
-
+            // Odak değişimi bg_zapping_item (stroke) ile yapılıyor. OK tıklaması View tarafından yönetilir.
             binding.root.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -56,17 +68,14 @@ class ZappingChannelAdapter(
                 }
             }
 
-            binding.root.setOnKeyListener { _, keyCode, event ->
-                if ((keyCode == KeyEvent.KEYCODE_DPAD_CENTER || keyCode == KeyEvent.KEYCODE_ENTER) &&
-                    event.action == KeyEvent.ACTION_UP
-                ) {
-                    val position = bindingAdapterPosition
-                    if (position != RecyclerView.NO_POSITION) {
-                        onChannelSelected(items[position])
-                        return@setOnKeyListener true
-                    }
+            binding.root.setOnLongClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onLongPress(items[position])
+                    true
+                } else {
+                    false
                 }
-                false
             }
 
             binding.btnZappingUp.setOnClickListener {
@@ -92,8 +101,8 @@ class ZappingChannelAdapter(
         }
 
         fun bind(channel: Channel) {
-            val displayName = if (channel.channelNumber > 0) "${channel.channelNumber}. ${channel.name}" else channel.name
-            binding.tvZappingName.text = displayName
+            val favMark = if (channel.isFavorite) "  ★" else ""
+            binding.tvZappingName.text = channel.displayName() + favMark
 
             if (!channel.logoUrl.isNullOrBlank()) {
                 binding.ivZappingLogo.load(channel.logoUrl) {
@@ -102,6 +111,14 @@ class ZappingChannelAdapter(
                 }
             } else {
                 binding.ivZappingLogo.setImageResource(R.drawable.ic_tv)
+            }
+
+            val now = EpgRepository.nowAndNext(channel).first
+            if (now != null) {
+                binding.tvZappingNow.visibility = View.VISIBLE
+                binding.tvZappingNow.text = now.title
+            } else {
+                binding.tvZappingNow.visibility = View.GONE
             }
 
             binding.root.isSelected = (channel.id == activeChannelId)

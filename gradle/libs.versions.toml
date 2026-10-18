@@ -47,6 +47,10 @@ material = "1.12.0"
 constraintlayout = "2.2.0"
 cardview = "1.0.0"
 recyclerview = "1.4.0"
+tvprovider = "1.0.0"
+zxing = "3.5.3"
+activityKtx = "1.10.1"
+lifecycleViewmodelKtx = "2.8.7"
 
 
 [libraries]
@@ -111,6 +115,10 @@ media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", versi
 media3-exoplayer-hls = { group = "androidx.media3", name = "media3-exoplayer-hls", version.ref = "media3" }
 media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
 media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
+androidx-tvprovider = { group = "androidx.tvprovider", name = "tvprovider", version.ref = "tvprovider" }
+zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
+androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activityKtx" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 
 
 [plugins]
